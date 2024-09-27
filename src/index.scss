@@ -457,3 +457,40 @@ header.hero h2 {
       margin: 10px;
   }
 }
+
+.d3 {
+  text-align: center;
+}
+
+
+// *************** d3js ********************
+
+div.d3 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 960px;
+  height: 500px;
+  position: relative;
+  text-align: center;
+  margin: 0;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+}
+
+path.slice{
+    stroke-width:2px;
+}
+
+polyline {
+    opacity: .3;
+    stroke: red;
+    stroke-width: 2px;
+    fill: none;
+}
+
+h2.d3 {
+    text-align: center;
+    margin: 0;
+}

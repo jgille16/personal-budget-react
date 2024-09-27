@@ -1,0 +1,35 @@
+{"myBudget": [
+    {
+        "label": "Eat out",
+        "value": 25
+    },
+    {
+        "label": "Rent",
+        "value": 375
+    },
+    {
+        "label": "Grocery",
+        "value": 300
+    },
+    {
+        "label": "Entertainment",
+        "value": 50
+    },
+    {
+        "label": "Water/Electric",
+        "value": 200
+    },
+    {
+        "label": "Phone",
+        "value": 75
+    },
+    {
+        "label": "Internet",
+        "value": 95
+    },
+    {
+        "label": "Gas",
+        "value": 60
+    }
+
+]}

@@ -1,5 +1,71 @@
+import React, { useEffect, useRef } from 'react';
+import Chart from 'chart.js/auto';
+import axios from 'axios';
+
+import D3PieChart from '../D3PieChart/D3PieChart';
+
 
 function HomePage() {
+    
+
+    // ********* Chart.js **********
+    const chartRef = useRef(null);
+
+    useEffect(() => {
+        const dataSource = {
+            datasets: [
+                {
+                    data: [30, 350, 90], // Initial data (will be updated)
+                    backgroundColor: [
+                        '#ffcd56',
+                        '#ff6384',
+                        '#36a2eb',
+                        '#fd6b19',
+                        '#c6381a',
+                        '#bec61a',
+                        '#1a2fc6',
+                        '#c61ab1',
+                    ],
+                }
+            ],
+            labels: [
+                'Eat out',
+                'Rent',
+                'Groceries'
+            ]
+        };
+
+        function createChart() {
+            // if (chartRef.current) { 
+                const ctx = chartRef.current.getContext('2d'); // Get the canvas context
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: dataSource
+                });
+        }
+
+        // Function to fetch budget data and update the chart
+        function getBudget() {
+            axios.get('http://localhost:3000/budget')
+                .then(function (res) {
+                    console.log(res);
+                    for (let i = 0; i < res.data.myBudget.length; i++) {
+                        dataSource.datasets[0].data[i] = res.data.myBudget[i].value;
+                        dataSource.labels[i] = res.data.myBudget[i].label;
+                    }
+                    createChart(); // Create chart after updating data
+                })
+                .catch(error => {});
+        }
+
+        getBudget(); // Fetch budget data on component mount
+
+    }, []); // Empty dependency array to run only once when component mounts
+    
+
+  
+
+
     return (
     <div role="main" className="container center">
         
@@ -65,11 +131,17 @@ function HomePage() {
             <article className="text-box">
                 <h2>Chart</h2>
                 <p>
-                    <canvas id="myChart" width="400" height="400"></canvas>
+                    <canvas ref={chartRef} id="myChart" width="400" height="400"></canvas>
                 </p>
             </article>
 
         </section>
+
+        
+  
+        <h2>D3JS</h2>
+        <D3PieChart />
+        
     </div>
 
     );
